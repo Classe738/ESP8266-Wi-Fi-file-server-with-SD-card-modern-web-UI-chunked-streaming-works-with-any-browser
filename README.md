@@ -64,10 +64,10 @@
  * 1.1. GENERAL WORKFLOW
  * -----------------------
  * 
- * ┌─────────────────────────────────────────────────────────────────────────┐
+ * ┌────────────────────────────────────────────────────────────────────────┐
  * │                         VS_Drop.cloud System                           │
- * ├─────────────────────────────────────────────────────────────────────────┤
- * │                                                                         │
+ * ├────────────────────────────────────────────────────────────────────────┤
+ * │                                                                        │
  * │   ┌─────────────┐      ┌─────────────┐      ┌─────────────┐            │
  * │   │   CLIENT    │      │   ESP8266   │      │  SD CARD    │            │
  * │   │ (Smartphone)│◄────►│   Server    │◄────►│  (Files)    │            │
@@ -79,8 +79,8 @@
  * │   │  Browser    │      │   Flash     │                                 │
  * │   │   HTTP      │      │  (HTML/CSS) │                                 │
  * │   └─────────────┘      └─────────────┘                                 │
- * │                                                                         │
- * └─────────────────────────────────────────────────────────────────────────┘
+ * │                                                                        │
+ * └────────────────────────────────────────────────────────────────────────┘
  * 
  * REQUEST SEQUENCE:
  * 
@@ -698,27 +698,27 @@
  * │                  HTTP Request Processing                        │
  * ├─────────────────────────────────────────────────────────────────┤
  * │                                                                 │
- * │  1. Client sends HTTP request                                  │
- * │     GET /?path=/documents HTTP/1.1                             │
+ * │  1. Client sends HTTP request                                   │
+ * │     GET /?path=/documents HTTP/1.1                              │
  * │                                                                 │
- * │  2. ESP8266WebServer accepts connection                        │
- * │     server.handleClient() in loop()                            │
+ * │  2. ESP8266WebServer accepts connection                         │
+ * │     server.handleClient() in loop()                             │
  * │                                                                 │
- * │  3. Request parsing                                            │
- * │     - Method: GET, POST, etc.                                  │
- * │     - URL: /?path=/documents                                   │
- * │     - Arguments: path=/documents                               │
- * │     - Headers: Cookie, Authorization                           │
+ * │  3. Request parsing                                             │
+ * │     - Method: GET, POST, etc.                                   │
+ * │     - URL: /?path=/documents                                    │
+ * │     - Arguments: path=/documents                                │
+ * │     - Headers: Cookie, Authorization                            │
  * │                                                                 │
- * │  4. Handler lookup (Routing)                                   │
- * │     server.on("/", handleRoot);  // Registered route           │
+ * │  4. Handler lookup (Routing)                                    │
+ * │     server.on("/", handleRoot);  // Registered route            │
  * │                                                                 │
- * │  5. Callback function invocation                               │
- * │     handleRoot() generates response                            │
+ * │  5. Callback function invocation                                │
+ * │     handleRoot() generates response                             │
  * │                                                                 │
- * │  6. Response sending                                           │
- * │     server.send(200, "text/html", html);                       │
- * │     or server.streamFile(file, mimeType);                      │
+ * │  6. Response sending                                            │
+ * │     server.send(200, "text/html", html);                        │
+ * │     or server.streamFile(file, mimeType);                       │
  * │                                                                 │
  * └─────────────────────────────────────────────────────────────────┘
  * 
@@ -750,32 +750,32 @@
  * │                Multipart Upload Flow                            │
  * ├─────────────────────────────────────────────────────────────────┤
  * │                                                                 │
- * │  Client sends:                                                 │
- * │  POST /upload HTTP/1.1                                         │
- * │  Content-Type: multipart/form-data; boundary=----WebKitForm    │
+ * │  Client sends:                                                  │
+ * │  POST /upload HTTP/1.1                                          │
+ * │  Content-Type: multipart/form-data; boundary=----WebKitForm     │
  * │                                                                 │
- * │  ------WebKitForm                                              │
- * │  Content-Disposition: form-data; name="file"; filename="a.jpg" │
- * │  Content-Type: image/jpeg                                      │
+ * │  ------WebKitForm                                               │ 
+ * │  Content-Disposition: form-data; name="file"; filename="a.jpg"  │
+ * │  Content-Type: image/jpeg                                       │
  * │                                                                 │
- * │  <binary file data>                                            │
- * │  ------WebKitForm--                                            │
+ * │  <binary file data>                                             │
+ * │  ------WebKitForm--                                             │
  * │                                                                 │
- * │  ESP8266WebServer parses and calls:                            │
+ * │  ESP8266WebServer parses and calls:                             │
  * │                                                                 │
- * │  1. UPLOAD_FILE_START                                          │
- * │     upload.filename = "a.jpg"                                  │
- * │     upload.totalSize = 0                                       │
- * │     → Open file on SD                                          │
+ * │  1. UPLOAD_FILE_START                                           │
+ * │     upload.filename = "a.jpg"                                   │
+ * │     upload.totalSize = 0                                        │
+ * │     → Open file on SD                                           │
  * │                                                                 │
- * │  2. UPLOAD_FILE_WRITE (many times)                             │
- * │     upload.buf[] = data (up to 1460 bytes)                     │
- * │     upload.currentSize = size of current chunk                 │
- * │     → Write to SD                                              │
+ * │  2. UPLOAD_FILE_WRITE (many times)                              │
+ * │     upload.buf[] = data (up to 1460 bytes)                      │
+ * │     upload.currentSize = size of current chunk                  │
+ * │     → Write to SD                                               │
  * │                                                                 │
- * │  3. UPLOAD_FILE_END                                            │
- * │     upload.totalSize = total size                              │
- * │     → Close file, show success                                 │
+ * │  3. UPLOAD_FILE_END                                             │
+ * │     upload.totalSize = total size                               │
+ * │     → Close file, show success                                  │
  * │                                                                 │
  * └─────────────────────────────────────────────────────────────────┘
  * 
@@ -825,14 +825,14 @@
  * ├─────────────────────────────────────────────────────────────────┤
  * │                                                                 │
  * │  HTTP/1.1 200 OK                                                │
- * │  Transfer-Encoding: chunked                                    │
- * │  Content-Type: text/html                                       │
+ * │  Transfer-Encoding: chunked                                     │
+ * │  Content-Type: text/html                                        │
  * │                                                                 │
- * │  1a\r\n           (26 bytes in hex)                            │
- * │  <html><body>Hello\r\n                                         │
- * │  10\r\n           (16 bytes)                                   │
- * │  World!</body></html>\r\n                                      │
- * │  0\r\n            (end)                                        │
+ * │  1a\r\n           (26 bytes in hex)                             │
+ * │  <html><body>Hello\r\n                                          │
+ * │  10\r\n           (16 bytes)                                    │
+ * │  World!</body></html>\r\n                                       │
+ * │  0\r\n            (end)                                         │
  * │  \r\n                                                           │
  * │                                                                 │
  * └─────────────────────────────────────────────────────────────────┘
@@ -873,33 +873,33 @@
  * 
  * Key optimization for working with large files.
  * 
- * ┌─────────────────────────────────────────────────────────────────┐
- * │              Buffered vs Streaming                              │
- * ├─────────────────────────────────────────────────────────────────┤
- * │                                                                 │
+ * ┌────────────────────────────────────────────────────────────────┐
+ * │              Buffered vs Streaming                             │
+ * ├────────────────────────────────────────────────────────────────┤
+ * │                                                                │
  * │  BUFFERED (BAD for large files):                               │
- * │                                                                 │
+ * │                                                                │
  * │  ┌─────────────────────────────────────────────────────┐       │
- * │  │  RAM                                                 │       │
+ * │  │  RAM                                                │       │
  * │  │  ┌─────────────────────────────────────────────┐    │       │
- * │  │  │  Entire file loaded into memory              │    │       │
- * │  │  │  10 MB file = 10 MB RAM                      │    │       │
- * │  │  │  → OUT OF MEMORY!                            │    │       │
+ * │  │  │  Entire file loaded into memory             │    │       │
+ * │  │  │  10 MB file = 10 MB RAM                     │    │       │
+ * │  │  │  → OUT OF MEMORY!                           │    │       │
  * │  │  └─────────────────────────────────────────────┘    │       │
  * │  └─────────────────────────────────────────────────────┘       │
- * │                                                                 │
+ * │                                                                │
  * │  STREAMING (GOOD):                                             │
- * │                                                                 │
+ * │                                                                │
  * │  ┌─────────────────────────────────────────────────────┐       │
- * │  │  RAM                                                 │       │
+ * │  │  RAM                                                │       │
  * │  │  ┌──────────────────────────────┐                   │       │
  * │  │  │  Small buffer ~1.5 KB        │                   │       │
  * │  │  │  Read → Send → Read          │                   │       │
  * │  │  │  → Works with files of any size                  │       │
  * │  │  └──────────────────────────────┘                   │       │
  * │  └─────────────────────────────────────────────────────┘       │
- * │                                                                 │
- * └─────────────────────────────────────────────────────────────────┘
+ * │                                                                │
+ * └────────────────────────────────────────────────────────────────┘
  * 
  * 
  * IMPLEMENTATION:
@@ -948,10 +948,10 @@
  * MIME (Multipurpose Internet Mail Extensions) - standard for
  * specifying content type.
  * 
- * ┌─────────────────────────────────────────────────────────────────┐
- * │                    Common MIME Types                            │
- * ├─────────────────────────────────────────────────────────────────┤
- * │                                                                 │
+ * ┌────────────────────────────────────────────────────────────────┐
+ * │                    Common MIME Types                           │
+ * ├────────────────────────────────────────────────────────────────┤
+ * │                                                                │
  * │  Text:                                                         │
  * │  ├── text/html           .html, .htm                           │
  * │  ├── text/css            .css                                  │
@@ -959,28 +959,28 @@
  * │  ├── text/plain          .txt, .log, .md                       │
  * │  ├── application/json    .json                                 │
  * │  └── application/xml     .xml                                  │
- * │                                                                 │
+ * │                                                                │
  * │  Images:                                                       │
  * │  ├── image/jpeg          .jpg, .jpeg                           │
  * │  ├── image/png           .png                                  │
  * │  ├── image/gif           .gif                                  │
  * │  ├── image/svg+xml       .svg                                  │
  * │  └── image/webp          .webp                                 │
- * │                                                                 │
+ * │                                                                │
  * │  Audio/Video:                                                  │
  * │  ├── audio/mpeg          .mp3                                  │
  * │  ├── audio/wav           .wav                                  │
  * │  ├── video/mp4           .mp4                                  │
  * │  └── video/webm          .webm                                 │
- * │                                                                 │
+ * │                                                                │
  * │  Documents:                                                    │
  * │  ├── application/pdf     .pdf                                  │
  * │  └── application/zip     .zip                                  │
- * │                                                                 │
+ * │                                                                │
  * │  Binary:                                                       │
  * │  └── application/octet-stream   (default)                      │
- * │                                                                 │
- * └─────────────────────────────────────────────────────────────────┘
+ * │                                                                │
+ * └────────────────────────────────────────────────────────────────┘
  * 
  * 
  * getMimeType() FUNCTION:
@@ -1023,36 +1023,36 @@
  * 
  * Simple HTTP Basic Auth + Session Cookie.
  * 
- * ┌─────────────────────────────────────────────────────────────────┐
- * │                    Auth Flow                                    │
- * ├─────────────────────────────────────────────────────────────────┤
- * │                                                                 │
+ * ┌────────────────────────────────────────────────────────────────┐
+ * │                    Auth Flow                                   │
+ * ├────────────────────────────────────────────────────────────────┤
+ * │                                                                │
  * │  1. Unauthorized request                                       │
  * │     GET / HTTP/1.1                                             │
  * │     Cookie: (none)                                             │
- * │                                                                 │
+ * │                                                                │
  * │  2. Server redirects to /login                                 │
  * │     HTTP/1.1 302 Found                                         │
  * │     Location: /login                                           │
- * │                                                                 │
+ * │                                                                │
  * │  3. User enters login/password                                 │
  * │     POST /login HTTP/1.1                                       │
  * │     user=admin&pass=admin                                      │
- * │                                                                 │
+ * │                                                                │
  * │  4. Server validates and issues cookie                         │
  * │     HTTP/1.1 302 Found                                         │
  * │     Set-Cookie: session=a1b2c3d4e5f6...                        │
  * │     Location: /                                                │
- * │                                                                 │
+ * │                                                                │
  * │  5. Subsequent requests with cookie                            │
  * │     GET / HTTP/1.1                                             │
  * │     Cookie: session=a1b2c3d4e5f6...                            │
- * │                                                                 │
+ * │                                                                │
  * │  6. Server checks cookie and grants access                     │
  * │     HTTP/1.1 200 OK                                            │
  * │     ... content ...                                            │
- * │                                                                 │
- * └─────────────────────────────────────────────────────────────────┘
+ * │                                                                │
+ * └────────────────────────────────────────────────────────────────┘
  * 
  * 
  * IMPLEMENTATION:
@@ -1108,43 +1108,43 @@
  * │                  Security Measures                              │
  * ├─────────────────────────────────────────────────────────────────┤
  * │                                                                 │
- * │  1. PATH TRAVERSAL PROTECTION                                  │
+ * │  1. PATH TRAVERSAL PROTECTION                                   │
  * │                                                                 │
- * │     Attack: GET /download?path=../../etc/passwd                │
+ * │     Attack: GET /download?path=../../etc/passwd                 │
  * │                                                                 │
- * │     Protection:                                                │
- * │     String path = server.arg("path");                          │
- * │     if (path.indexOf("..") >= 0) {                             │
- * │       path = "/";  // Safe default path                        │
- * │     }                                                          │
+ * │     Protection:                                                 │
+ * │     String path = server.arg("path");                           │
+ * │     if (path.indexOf("..") >= 0) {                              │
+ * │       path = "/";  // Safe default path                         │
+ * │     }                                                           │
  * │                                                                 │
  * │                                                                 │
- * │  2. FORBID DELETION OF ROOT                                    │
+ * │  2. FORBID DELETION OF ROOT                                     │
  * │                                                                 │
  * │     if (path == "/") {                                          │
- * │       server.send(400, "text/plain", "Cannot delete root");    │
+ * │       server.send(400, "text/plain", "Cannot delete root");     │
  * │       return;                                                   │
  * │     }                                                           │
  * │                                                                 │
  * │                                                                 │
- * │  3. CHECK EXISTENCE BEFORE ACTION                              │
+ * │  3. CHECK EXISTENCE BEFORE ACTION                               │
  * │                                                                 │
  * │     if (!SD.exists(path)) {                                     │
- * │       server.send(404, "text/plain", "Not found");             │
+ * │       server.send(404, "text/plain", "Not found");              │
  * │       return;                                                   │
  * │     }                                                           │
  * │                                                                 │
  * │                                                                 │
- * │  4. DELETE ONLY EMPTY FOLDERS                                  │
+ * │  4. DELETE ONLY EMPTY FOLDERS                                   │
  * │                                                                 │
- * │     SD.rmdir(path);  // Deletes only empty folders             │
+ * │     SD.rmdir(path);  // Deletes only empty folders              │
  * │                                                                 │
  * │                                                                 │
- * │  5. UPLOAD SIZE LIMIT                                          │
+ * │  5. UPLOAD SIZE LIMIT                                           │
  * │                                                                 │
- * │     // In HTTPUpload:                                          │
- * │     if (upload.totalSize > MAX_FILE_SIZE) {                    │
- * │       // Abort upload                                          │
+ * │     // In HTTPUpload:                                           │
+ * │     if (upload.totalSize > MAX_FILE_SIZE) {                     │
+ * │       // Abort upload                                           │
  * │     }                                                           │
  * │                                                                 │
  * └─────────────────────────────────────────────────────────────────┘
@@ -1310,21 +1310,21 @@
  * 
  * WiFi.mode(WIFI_AP_STA);  // Combined mode
  * 
- * ┌─────────────────────────────────────────────────────────────────┐
- * │              WiFi AP_STA Mode                                   │
- * ├─────────────────────────────────────────────────────────────────┤
- * │                                                                 │
+ * ┌────────────────────────────────────────────────────────────────┐
+ * │              WiFi AP_STA Mode                                  │
+ * ├────────────────────────────────────────────────────────────────┤
+ * │                                                                │
  * │   ┌─────────────┐         ┌─────────────┐                      │
  * │   │  Smartphone │◄───────►│             │                      │
  * │   │  (AP mode)  │  192.   │             │                      │
  * │   └─────────────┘  168.4.x│   ESP8266   │                      │
- * │                            │             │◄──────► Internet     │
+ * │                           │             │◄──────► Internet     │
  * │   ┌─────────────┐         │             │        (STA mode)    │
  * │   │   Router    │◄───────►│             │                      │
  * │   │  (STA mode) │  DHCP   │             │                      │
  * │   └─────────────┘         └─────────────┘                      │
- * │                                                                 │
- * └─────────────────────────────────────────────────────────────────┘
+ * │                                                                │
+ * └────────────────────────────────────────────────────────────────┘
  * 
  * 
  * EXAMPLE: Syncing with the cloud
@@ -1593,13 +1593,13 @@
  * RECOMMENDATIONS TO OVERCOME:
  * 
  * ┌─────────────────────────────────────────────────────────────────┐
- * │ Problem           │ Solution                                   │
+ * │ Problem           │ Solution                                    │
  * ├─────────────────────────────────────────────────────────────────┤
- * │ Low memory        │ PROGMEM, streaming, F() macro              │
- * │ Slow transfer     │ Chunked encoding, parallel processing      │
- * │ No HTTPS          │ Use VPN or tunnel                          │
- * │ Few clients       │ ESP32 (up to 10 clients)                   │
- * │ FAT32 only        │ Use LittleFS for internal Flash            │
+ * │ Low memory        │ PROGMEM, streaming, F() macro               │
+ * │ Slow transfer     │ Chunked encoding, parallel processing       │
+ * │ No HTTPS          │ Use VPN or tunnel                           │
+ * │ Few clients       │ ESP32 (up to 10 clients)                    │
+ * │ FAT32 only        │ Use LittleFS for internal Flash             │
  * └─────────────────────────────────────────────────────────────────┘
  */
 
@@ -1614,16 +1614,16 @@
  * 
  * ╔═══════════════════════════════════════════════════════════════════╗
  * ║                                                                   ║
- * ║   VS_Drop.cloud - ESP8266 SD Card File Server                    ║
+ * ║   VS_Drop.cloud - ESP8266 SD Card File Server                     ║
  * ║                                                                   ║
  * ║   Documentation: v2.0                                             ║
- * ║   Firmware:   VS_Drop_Cloud_ESP8266.ino                          ║
+ * ║   Firmware:   VS_Drop_Cloud_ESP8266.ino                           ║
  * ║                                                                   ║
- * ║   For questions and suggestions:                                 ║
- * ║   - Create an Issue on GitHub                                    ║
- * ║   - Refer to ESP8266 documentation                               ║
+ * ║   For questions and suggestions:                                  ║
+ * ║   - Create an Issue on GitHub                                     ║
+ * ║   - Refer to ESP8266 documentation                                ║
  * ║                                                                   ║
- * ║   Good luck with your project!                                   ║
+ * ║   Good luck with your project!                                    ║
  * ║                                                                   ║
  * ╚═══════════════════════════════════════════════════════════════════╝
  * 
